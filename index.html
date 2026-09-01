@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مدیریت کسب‌وکار محمد</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f5f7fb;color:#172033}
+.app{display:flex;min-height:100vh}.side{width:245px;background:#101828;color:#fff;padding:22px 14px;position:fixed;right:0;top:0;bottom:0}.brand{font-size:20px;font-weight:800;padding:10px 12px 25px}.nav button{width:100%;border:0;background:transparent;color:#cbd5e1;text-align:right;padding:12px;border-radius:10px;margin:3px 0;cursor:pointer;font-size:14px}.nav button.active,.nav button:hover{background:#1d2939;color:#fff}.main{margin-right:245px;width:calc(100% - 245px);padding:28px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.top h1{margin:0;font-size:27px}.date{color:#667085;font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:#fff;border:1px solid #e4e7ec;border-radius:16px;padding:19px;box-shadow:0 3px 12px #1018280b}.stat{font-size:27px;font-weight:800;margin:10px 0}.muted{color:#667085;font-size:13px}.section{margin-top:22px}.section h2{font-size:18px}.two{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.task{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:13px 0}.task:last-child{border:0}.badge{padding:5px 9px;border-radius:20px;background:#eef4ff;color:#315efb;font-size:12px}.btn{border:0;border-radius:10px;padding:10px 14px;cursor:pointer;background:#175cd3;color:#fff}.btn.secondary{background:#eef2f6;color:#344054}.content{display:none}.content.active{display:block}.panel{background:#fff;border:1px solid #e4e7ec;border-radius:16px;padding:20px}.list{display:grid;gap:10px}.item{padding:14px;border:1px solid #eaecf0;border-radius:12px;display:flex;justify-content:space-between;gap:10px}.empty{color:#98a2b3;text-align:center;padding:35px}.input{width:100%;padding:11px;border:1px solid #d0d5dd;border-radius:10px;margin:7px 0 12px;font-family:inherit}.actions{display:flex;gap:8px;flex-wrap:wrap}@media(max-width:900px){.side{width:190px}.main{margin-right:190px;width:calc(100% - 190px);padding:18px}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}@media(max-width:600px){.side{position:static;width:100%;height:auto}.app{display:block}.main{margin:0;width:100%}.grid{grid-template-columns:1fr}.nav{display:grid;grid-template-columns:1fr 1fr}.top{display:block}.top h1{margin-bottom:8px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand">⚡ مدیریت کسب‌وکار محمد</div>
+  <nav class="nav">
+    <button class="active" data-page="home">📊 داشبورد</button>
+    <button data-page="content">✍️ محتوا</button>
+    <button data-page="orders">🧾 سفارش‌ها</button>
+    <button data-page="customers">👥 مشتری‌ها</button>
+    <button data-page="products">🎓 دوره‌ها</button>
+    <button data-page="projects">💻 پروژه‌ها</button>
+    <button data-page="calendar">📅 تقویم</button>
+    <button data-page="automation">🤖 اتوماسیون</button>
+    <button data-page="settings">⚙️ تنظیمات</button>
+  </nav>
+</aside>
+<main class="main">
+  <div class="top"><div><h1 id="title">داشبورد</h1><div class="date" id="date"></div></div><button class="btn" onclick="quickTask()">＋ کار جدید</button></div>
+
+  <section id="home" class="content active">
+    <div class="grid">
+      <div class="card"><div class="muted">سفارش‌های باز</div><div class="stat" id="ordersStat">0</div><div class="muted">قابل پیگیری</div></div>
+      <div class="card"><div class="muted">محتوای برنامه‌ریزی‌شده</div><div class="stat" id="contentStat">0</div><div class="muted">این هفته</div></div>
+      <div class="card"><div class="muted">مشتری‌ها</div><div class="stat" id="customersStat">0</div><div class="muted">ثبت‌شده</div></div>
+      <div class="card"><div class="muted">درآمد ثبت‌شده</div><div class="stat" id="incomeStat">۰ تومان</div><div class="muted">در این نسخه محلی</div></div>
+    </div>
+    <div class="section two">
+      <div class="card"><h2>کارهای امروز</h2><div id="tasks"></div></div>
+      <div class="card"><h2>مسیر اتوماسیون</h2>
+        <div class="task"><span>ایده → متن</span><span class="badge">آماده</span></div>
+        <div class="task"><span>متن → محتوای تصویری</span><span class="badge">آماده</span></div>
+        <div class="task"><span>تقویم → انتشار</span><span class="badge">نیازمند API</span></div>
+        <div class="task"><span>فروش → تحویل دوره</span><span class="badge">نیازمند اتصال</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="content" class="content"><div class="panel"><h2>مدیریت محتوا</h2><p class="muted">ایده‌ها و محتواهای آینده را اینجا ثبت کن.</p><input id="contentInput" class="input" placeholder="مثلاً: چرا محتوا فروش نمی‌سازد؟"><button class="btn" onclick="addContent()">افزودن ایده</button><div id="contentList" class="list" style="margin-top:15px"></div></div></section>
+  <section id="orders" class="content"><div class="panel"><h2>سفارش‌ها</h2><p class="muted">ثبت و پیگیری سفارش‌های لوگو، سایت و برنامه‌نویسی.</p><input id="orderInput" class="input" placeholder="نام/نوع سفارش"><button class="btn" onclick="addOrder()">ثبت سفارش</button><div id="orderList" class="list" style="margin-top:15px"></div></div></section>
+  <section id="customers" class="content"><div class="panel"><h2>مشتری‌ها</h2><input id="customerInput" class="input" placeholder="نام مشتری"><button class="btn" onclick="addCustomer()">افزودن مشتری</button><div id="customerList" class="list" style="margin-top:15px"></div></div></section>
+  <section id="products" class="content"><div class="panel"><h2>دوره‌ها</h2><p class="muted">محل مدیریت محصولات آموزشی. اتصال پرداخت و تحویل خودکار در مرحله بعد اضافه می‌شود.</p><div class="item"><span>دوره‌های من</span><span class="badge">۰ محصول ثبت‌شده</span></div></div></section>
+  <section id="projects" class="content"><div class="panel"><h2>پروژه‌ها</h2><p class="muted">پروژه‌های برنامه‌نویسی، طراحی سایت و لوگو را مدیریت کن.</p><div id="projectList" class="list"></div></div></section>
+  <section id="calendar" class="content"><div class="panel"><h2>تقویم محتوا</h2><div class="grid"><div class="item">شنبه<br><span class="muted">برنامه‌نویسی</span></div><div class="item">یکشنبه<br><span class="muted">کمپین‌نویسی</span></div><div class="item">دوشنبه<br><span class="muted">طراحی لوگو</span></div><div class="item">سه‌شنبه<br><span class="muted">برنامه‌نویسی</span></div><div class="item">چهارشنبه<br><span class="muted">کمپین‌نویسی</span></div><div class="item">پنجشنبه<br><span class="muted">طراحی لوگو</span></div></div></div></section>
+  <section id="automation" class="content"><div class="panel"><h2>اتوماسیون</h2><p class="muted">در این نسخه، ساختار اتوماسیون آماده است؛ برای اجرای واقعی باید APIهای سرویس‌ها و یک Backend امن متصل شوند.</p><div class="list"><div class="item"><span>تولید ایده محتوا</span><span class="badge">فعال</span></div><div class="item"><span>تولید کپشن</span><span class="badge">فعال</span></div><div class="item"><span>انتشار خودکار شبکه‌ها</span><span class="badge">API لازم</span></div><div class="item"><span>گزارش هفتگی</span><span class="badge">قابل اتصال</span></div></div></div></section>
+  <section id="settings" class="content"><div class="panel"><h2>تنظیمات</h2><p class="muted">اطلاعات این نسخه در مرورگر ذخیره می‌شود. کلیدهای API را داخل کد قرار نده؛ برای نسخه آنلاین باید در Backend/Secret Manager نگهداری شوند.</p><button class="btn secondary" onclick="resetData()">پاک‌کردن داده‌های محلی</button></div></section>
+</main>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const load=k=>JSON.parse(localStorage.getItem(k)||"[]");
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+function render(){
+ $('date').textContent=new Intl.DateTimeFormat('fa-IR',{dateStyle:'full'}).format(new Date());
+ const orders=load('orders'), customers=load('customers'), contents=load('contents');
+ $('ordersStat').textContent=orders.length; $('customersStat').textContent=customers.length; $('contentStat').textContent=contents.length;
+ $('incomeStat').textContent='۰ تومان';
+ $('tasks').innerHTML=orders.length?orders.slice(0,4).map(x=>`<div class="task"><span>${x}</span><span class="badge">باز</span></div>`).join(''):'<div class="empty">هنوز کاری ثبت نشده است.</div>';
+ $('contentList').innerHTML=contents.length?contents.map(x=>`<div class="item"><span>${x}</span><span class="badge">ایده</span></div>`).join(''):'<div class="empty">ایده‌ای ثبت نشده.</div>';
+ $('orderList').innerHTML=orders.length?orders.map(x=>`<div class="item"><span>${x}</span><span class="badge">باز</span></div>`).join(''):'<div class="empty">سفارشی ثبت نشده.</div>';
+ $('customerList').innerHTML=customers.length?customers.map(x=>`<div class="item"><span>${x}</span><span class="badge">مشتری</span></div>`).join(''):'<div class="empty">مشتری‌ای ثبت نشده.</div>';
+ $('projectList').innerHTML=['کمپین‌نویسی','طراحی لوگو','طراحی سایت','برنامه‌نویسی'].map(x=>`<div class="item"><span>${x}</span><span class="badge">صف پروژه</span></div>`).join('');
+}
+function addContent(){let v=$('contentInput').value.trim();if(!v)return;let a=load('contents');a.push(v);save('contents',a);$('contentInput').value='';render()}
+function addOrder(){let v=$('orderInput').value.trim();if(!v)return;let a=load('orders');a.push(v);save('orders',a);$('orderInput').value='';render()}
+function addCustomer(){let v=$('customerInput').value.trim();if(!v)return;let a=load('customers');a.push(v);save('customers',a);$('customerInput').value='';render()}
+function quickTask(){document.querySelector('[data-page="orders"]').click();$('orderInput').focus()}
+function resetData(){if(confirm('داده‌های محلی پاک شوند؟')){['orders','customers','contents'].forEach(k=>localStorage.removeItem(k));render()}}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.content').forEach(x=>x.classList.remove('active'));$(b.dataset.page).classList.add('active');$('title').textContent=b.textContent.replace(/^.\s*/,'')});
+render();
+</script>
+</body>
+</html>
